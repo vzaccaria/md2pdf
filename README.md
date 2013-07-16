@@ -4,6 +4,8 @@ This is an updated version of the script `md2pdf.sh` originally released by Clae
 
 ## Installation
 
+You should have already installed both `pandoc` and `xelatex`. Then,
+
 	npm install -g md2pdf
 
 ## Usage
