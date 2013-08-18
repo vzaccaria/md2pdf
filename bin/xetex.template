@@ -3,6 +3,7 @@ $legacy-header$
 $else$
 \documentclass[$columns$,$fontsize$]{article}
 \usepackage{amsmath}
+\usepackage{ctable}
 \usepackage[$language$]{babel}
 \usepackage{ifxetex}
 \usepackage[$geometry$,paper=$paper$,hmargin=$hmargin$,vmargin=$vmargin$]{geometry}
@@ -30,7 +31,7 @@ $if(fancy-enums)$
 \usepackage{enumerate}
 $endif$
 $if(tables)$
-\usepackage{array}
+\usepackage{longtable}
 % This is needed because raggedright in table elements redefines \\:
 \newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
 \let\PBS=\PreserveBackslash
@@ -41,16 +42,13 @@ $endif$
 $if(subscript)$
 \newcommand{\textsubscr}[1]{\ensuremath{_{\scriptsize\textrm{#1}}}}
 $endif$
-$if(links)$
 \usepackage[breaklinks=true]{hyperref}
-\hypersetup{colorlinks,%
-citecolor=blue,%
-filecolor=blue,%
-linkcolor=blue,%
-urlcolor=blue,%
+\hypersetup{colorlinks,
+citecolor=blue,
+filecolor=blue,
+linkcolor=blue,
+urlcolor=blue,
 pdftex}
-}
-$endif$
 $if(url)$
 \usepackage{url}
 $endif$
