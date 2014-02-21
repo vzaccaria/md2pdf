@@ -47,7 +47,7 @@ geometry=portrait
 #alignment=flushright
 #alignment=center
 
-pandoc --latex-engine=xelatex --template="${srcdir}/../lib/node_modules/md2pdf/bin/xetex.template" \
+pandoc -f markdown+lhs --latex-engine=xelatex --template="${srcdir}/../lib/node_modules/md2pdf/bin/xetex.template" \
 -V language=$language -V paper=$paper -V hmargin=$hmargin -V vmargin=$vmargin \
 -V mainfont="$mainfont" -V sansfont="$sansfont" -V monofont="$monofont" \
 -V geometry=$geometry -V alignment=$alignment -V columns=$columns \
