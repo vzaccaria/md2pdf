@@ -10,6 +10,7 @@ $else$
 \usepackage[$geometry$,paper=$paper$,hmargin=$hmargin$,vmargin=$vmargin$]{geometry}
 \usepackage{color}
 \usepackage{fancyvrb}
+\usepackage[space]{grffile}
 \DefineShortVerb[commandchars=\\\{\}]{\|}
 \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
 % Add ',fontsize=\small' for more characters per line

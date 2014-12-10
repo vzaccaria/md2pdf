@@ -54,5 +54,5 @@ pandoc -f markdown --latex-engine=xelatex --template="${srcdir}/../lib/node_modu
 -V fontsize=$fontsize -V nohyphenation=$nohyphenation \
 -V toc=$toc \
 $fullfile \
--o $filename.pdf
+-o $filename.tex
 

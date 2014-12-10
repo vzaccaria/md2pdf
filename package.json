@@ -17,7 +17,8 @@
     "url": "git@github.com:vzaccaria/md2pdf.git"
   },
   "bin": {
-    "md2pdf.sh": "bin/md2pdf.sh"
+    "md2pdf.sh": "bin/md2pdf.sh",
+    "md2latex.sh": "bin/md2latex.sh"
   },
   "license": "MIT"
 }

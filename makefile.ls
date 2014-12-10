@@ -10,6 +10,7 @@ plugins.copy-extension \template, (path-system) ->
   "#{path-system.server-dir}/bin" 
 
 files = [ { name: "./md2pdf.sh",   type: \sh } 
+          { name: "./md2latex.sh",   type: \sh }   
           { name: "./xetex.template", type: \template } ]
 
 wmake({deploy-dir: ".", local-server-dir: "."}, { other: files} )
