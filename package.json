@@ -2,7 +2,7 @@
   "name": "md2pdf",
   "preferGlobal": "true",
   "description": "Convenient pandoc+xelatex command line wrapper to easily style output pdf",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "contributors": [
     {
       "name": "Vittorio Zaccaria",
@@ -24,6 +24,7 @@
   "dependencies": {
     "exemd": "^0.1.0",
     "exemd-ascidia": "0.0.17",
-    "exemd-dot": "^0.1.1"
+    "exemd-dot": "^0.1.1",
+    "xyz": "^0.5.0"
   }
 }
