@@ -20,5 +20,10 @@
     "md2pdf.sh": "bin/md2pdf.sh",
     "md2latex.sh": "bin/md2latex.sh"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "exemd": "^0.1.0",
+    "exemd-ascidia": "0.0.17",
+    "exemd-dot": "^0.1.1"
+  }
 }

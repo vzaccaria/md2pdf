@@ -47,12 +47,12 @@ geometry=portrait
 #alignment=flushright
 #alignment=center
 
-pandoc -f markdown --latex-engine=xelatex --template="${srcdir}/../lib/node_modules/md2pdf/bin/xetex.template" \
+
+$srcdir/../lib/node_modules/md2pdf/node_modules/.bin/exemd -p "$fullfile" | pandoc -f markdown --latex-engine=xelatex --template="${srcdir}/../lib/node_modules/md2pdf/bin/xetex.template" \
 -V language=$language -V paper=$paper -V hmargin=$hmargin -V vmargin=$vmargin \
 -V mainfont="$mainfont" -V sansfont="$sansfont" -V monofont="$monofont" \
 -V geometry=$geometry -V alignment=$alignment -V columns=$columns \
 -V fontsize=$fontsize -V nohyphenation=$nohyphenation \
 -V toc=$toc \
-$fullfile \
 -o $filename.pdf
 
