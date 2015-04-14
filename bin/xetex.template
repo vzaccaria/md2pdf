@@ -11,6 +11,8 @@ $else$
 \usepackage{color}
 \usepackage{fancyvrb}
 \usepackage[space]{grffile}
+\usepackage{caption}
+\usepackage{subcaption}
 \DefineShortVerb[commandchars=\\\{\}]{\|}
 \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
 % Add ',fontsize=\small' for more characters per line
@@ -34,8 +36,13 @@ $else$
   \usepackage{fontspec,xltxtra,xunicode}
   \setmainfont{$mainfont$}
   \setsansfont{$sansfont$}
-  \setmonofont{$monofont$}
-  \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
+  \setmonofont[Scale=0.8,Ligatures=TeX]{$monofont$}
+  \renewcommand{\baselinestretch}{$linespread$}
+
+  \let\quoteOld\quote
+  \let\endquoteOld\endquote
+  \renewenvironment{quote}{\small\it\quoteOld}{\endquoteOld}
+
 \else
   \usepackage[mathletters]{ucs}
   \usepackage[utf8x]{inputenc}
@@ -44,8 +51,7 @@ $if(lhs)$
 \usepackage{listings}
 \lstnewenvironment{code}{\lstset{language=Haskell,basicstyle=\small\ttfamily}}{}
 $endif$
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\setlength{\parindent}{12pt}
 $endif$
 $if(verbatim-in-note)$
 \usepackage{fancyvrb}
@@ -98,6 +104,7 @@ $if(date)$
 $endif$
 
 \begin{document}
+
 $if(title)$
 \maketitle
 $endif$

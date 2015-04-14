@@ -36,6 +36,7 @@ monofont=Consolas
 language=english
 #language=swedish
 nohyphenation=false
+linespread=1.3
 
 columns=onecolumn
 #columns=twocolumn
@@ -53,6 +54,7 @@ pandoc -f markdown --latex-engine=xelatex --template="${srcdir}/../lib/node_modu
 -V geometry=$geometry -V alignment=$alignment -V columns=$columns \
 -V fontsize=$fontsize -V nohyphenation=$nohyphenation \
 -V toc=$toc \
+-V linespread=$linespread \
 $fullfile \
 -o $filename.tex
 

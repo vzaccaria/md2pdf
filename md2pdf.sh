@@ -29,13 +29,14 @@ fontsize=10pt
 
 mainfont="Palatino Linotype"
 sansfont=Corbel
-monofont=Consolas
+monofont="Hasklig Medium"
 # mainfont=Georgia
 # sansfont=Verdana
 # monofont="Courier New"
 language=english
 #language=swedish
 nohyphenation=false
+linespread=1.05
 
 columns=onecolumn
 #columns=twocolumn
@@ -48,11 +49,11 @@ geometry=portrait
 #alignment=center
 
 
-$srcdir/../lib/node_modules/md2pdf/node_modules/.bin/exemd -p "$fullfile" | pandoc -f markdown --latex-engine=xelatex --template="${srcdir}/../lib/node_modules/md2pdf/bin/xetex.template" \
+$srcdir/../lib/node_modules/md2pdf/node_modules/.bin/exemd -p "$fullfile" | pandoc -f markdown+implicit_figures --latex-engine=xelatex --template="${srcdir}/../lib/node_modules/md2pdf/bin/xetex.template" \
 -V language=$language -V paper=$paper -V hmargin=$hmargin -V vmargin=$vmargin \
 -V mainfont="$mainfont" -V sansfont="$sansfont" -V monofont="$monofont" \
 -V geometry=$geometry -V alignment=$alignment -V columns=$columns \
 -V fontsize=$fontsize -V nohyphenation=$nohyphenation \
 -V toc=$toc \
+-V linespread=$linespread \
 -o $filename.pdf
-
