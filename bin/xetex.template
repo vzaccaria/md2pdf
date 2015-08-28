@@ -1,7 +1,7 @@
 $if(legacy-header)$
 $legacy-header$
 $else$
-\documentclass[$columns$,$fontsize$]{article}
+\documentclass[$columns$,$fontsize$]{$theclass$}
 \usepackage{amsmath}
 \usepackage{ctable}
 \usepackage[$language$]{babel}
@@ -34,7 +34,7 @@ $else$
 
 \ifxetex
   \usepackage{fontspec,xltxtra,xunicode}
-  \setmainfont{$mainfont$}
+  \setmainfont[Scale=$scalemain$]{$mainfont$}
   \setsansfont{$sansfont$}
   \setmonofont[Scale=0.8,Ligatures=TeX]{$monofont$}
   \renewcommand{\baselinestretch}{$linespread$}

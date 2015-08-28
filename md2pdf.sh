@@ -1,17 +1,53 @@
 #!/bin/sh
 
-#function get_abs_path {
-#    dir=$(cd `dirname $1` >/dev/null; pwd )
-#    echo $dir
-#}
-#
-#abs=`get_abs_path ./deploy/static`
-#echo $abs
-#
-#
-# Split filenames..
-#
-fullfile=$1
+show_help() {
+cat << EOF
+Usage: ${0##*/} [-hm] [-t FONT] [-s SCALE] [FILE]...
+Use pandoc and exemd to convert the markdown FILE to pdf.
+
+    -h          display this help and exit
+    -t FONT     specify font name (use quotes)
+    -s SCALE    specify font size (rational numbers, default 1.0)
+    -m          use the memoir package
+EOF
+}
+
+# Initialize our own variables:
+use_memoir=0
+verbose=0
+fontsize=10pt
+scalemain=1.0
+
+OPTIND=1 # Reset is necessary if getopts was used previously in the script.  It is a good idea to make this local in a function.
+
+mainfont="Palatino Linotype"
+
+while getopts "hmt:s:" opt; do
+    case "$opt" in
+        h)
+            show_help
+            exit 0
+            ;;
+        m)  use_memoir=$((use_memoir+1))
+            ;;
+		t)  mainfont=$OPTARG
+			;;
+		s)  scalemain=$OPTARG
+			;;
+        '?')
+            show_help >&2
+            exit 1
+            ;;
+    esac
+done
+shift "$((OPTIND-1))" # Shift off the options and optional --.
+
+theclass="article"
+if [ "$use_memoir" -ne 0 ]; then
+	theclass="memoir";
+fi
+   
+fullfile="$@"
 filename=$(basename "$fullfile")
 extension="${filename##*.}"
 filename="${filename%.*}"
@@ -23,11 +59,9 @@ dstdir=`pwd`
 paper=a4paper
 hmargin=3cm
 vmargin=3.5cm
-fontsize=10pt
 #fontsize=11pt
 #fontsize=12pt
 
-mainfont="Palatino Linotype"
 sansfont=Corbel
 monofont="Hasklig Medium"
 # mainfont=Georgia
@@ -55,5 +89,7 @@ $srcdir/../lib/node_modules/md2pdf/node_modules/.bin/exemd -p "$fullfile" | pand
 -V geometry=$geometry -V alignment=$alignment -V columns=$columns \
 -V fontsize=$fontsize -V nohyphenation=$nohyphenation \
 -V toc=$toc \
+-V theclass=$theclass \
+-V scalemain=$scalemain \
 -V linespread=$linespread \
 -o $filename.pdf
