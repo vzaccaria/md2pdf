@@ -1,18 +1,25 @@
 $if(legacy-header)$
 $legacy-header$
 $else$
-\documentclass[$columns$,$fontsize$]{$theclass$}
+\documentclass[$columns$,$fontsize$,oldfontcommands]{$theclass$}
 \usepackage{amsmath}
 \usepackage{ctable}
 \usepackage[$language$]{babel}
 \usepackage{ifxetex}
 \usepackage{framed}
-\usepackage[$geometry$,paper=$paper$,hmargin=$hmargin$,vmargin=$vmargin$]{geometry}
+\usepackage[$geometry$,paper=$paper$,total={$twidth$,$theight$}]{geometry}
 \usepackage{color}
 \usepackage{fancyvrb}
 \usepackage[space]{grffile}
 \usepackage{caption}
 \usepackage{subcaption}
+$if(underline)$
+\usepackage{ulem}
+$endif$
+$if(count-figures)$
+\usepackage{chngcntr}
+\counterwithout{figure}{chapter}
+$endif$
 \DefineShortVerb[commandchars=\\\{\}]{\|}
 \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
 % Add ',fontsize=\small' for more characters per line
@@ -36,13 +43,19 @@ $else$
   \usepackage{fontspec,xltxtra,xunicode}
   \setmainfont[Scale=$scalemain$]{$mainfont$}
   \setsansfont{$sansfont$}
-  \setmonofont[Scale=0.8,Ligatures=TeX]{$monofont$}
+  \setmonofont[Scale=$scalemono$]{$monofont$}
   \renewcommand{\baselinestretch}{$linespread$}
 
   \let\quoteOld\quote
   \let\endquoteOld\endquote
+  $if(centerquotes)$
+  \renewenvironment{quote}{\begin{center}}{\end{center}}
+  $else$
   \renewenvironment{quote}{\small\it\quoteOld}{\endquoteOld}
-
+  \newfontfamily\myunicodefallback{Cambria}
+  \usepackage[Arrows]{ucharclasses}
+  \setTransitionsForSymbols{\begingroup\myunicodefallback}{\endgroup}
+  $endif$
 \else
   \usepackage[mathletters]{ucs}
   \usepackage[utf8x]{inputenc}
@@ -51,7 +64,10 @@ $if(lhs)$
 \usepackage{listings}
 \lstnewenvironment{code}{\lstset{language=Haskell,basicstyle=\small\ttfamily}}{}
 $endif$
-\setlength{\parindent}{12pt}
+
+\setlength{\parindent}{$parindent$}
+\setlength{\parskip}{$parskip$}
+
 $endif$
 $if(verbatim-in-note)$
 \usepackage{fancyvrb}
@@ -81,9 +97,34 @@ pdftex}
 $if(url)$
 \usepackage{url}
 $endif$
+
 $if(graphics)$
 \usepackage{graphicx}
 $endif$
+
+$if(maxheight)$
+\makeatletter
+\def\ScaleWidthIfNeeded{%
+ \ifdim\Gin@nat@width>\linewidth
+   \linewidth
+ \else
+   \Gin@nat@width
+ \fi
+}
+
+\def\ScaleHeightIfNeeded{%
+  \ifdim\Gin@nat@height>$maxheight$\textheight
+     $maxheight$\textheight
+  \else
+     \Gin@nat@width
+   \fi
+}
+
+\makeatother
+
+\setkeys{Gin}{width=\ScaleWidthIfNeeded,height=\ScaleHeightIfNeeded,keepaspectratio}%
+$endif$
+
 $if(numbersections)$
 $else$
 \setcounter{secnumdepth}{0}
@@ -101,6 +142,10 @@ $endif$
 \author{$for(author)$$author$$sep$\\$endfor$}
 $if(date)$
 \date{$date$}
+$endif$
+
+$if(underline)$
+\ULforem
 $endif$
 
 \begin{document}
