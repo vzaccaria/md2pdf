@@ -2,7 +2,6 @@ $if(legacy-header)$
 $legacy-header$
 $else$
 \documentclass[$columns$,$fontsize$,oldfontcommands]{$theclass$}
-\usepackage{amsmath}
 \usepackage{ctable}
 \usepackage[$language$]{babel}
 \usepackage{ifxetex}
@@ -16,6 +15,8 @@ $else$
 $if(underline)$
 \usepackage{ulem}
 $endif$
+\let\MakeRobust\relax
+\usepackage{amsmath}
 $if(count-figures)$
 \usepackage{chngcntr}
 \counterwithout{figure}{chapter}
