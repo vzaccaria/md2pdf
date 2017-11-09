@@ -155,5 +155,4 @@ $srcdir/../lib/node_modules/md2pdf/node_modules/.bin/exemd -p "$fullfile" | pand
 -V centerquotes=$centerquotes \
 -V parskip=$parskip \
 -V parindent=$parindent \
--V underline=$underline \
 -o $filename.$ext
